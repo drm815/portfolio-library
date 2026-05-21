@@ -1,0 +1,517 @@
+# 도서관 프로젝트 포트폴리오 페이지 Implementation Plan
+
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+
+**Goal:** 빈윤미 사서의 도서관 관련 6개 프로젝트를 소개하는 단일 HTML 포트폴리오 페이지를 `portfolio-library/index.html`에 만든다.
+
+**Architecture:** 빌드 도구 없는 순수 HTML/CSS/JS 단일 파일. CSS 변수로 디자인 토큰 관리, 반응형 그리드(2열↔1열). 나중에 프로젝트 추가 시 `<article class="card">` 블록만 복붙하면 된다.
+
+**Tech Stack:** HTML5, CSS3 (CSS Variables, Grid, Flexbox), vanilla JS (최소), Google Fonts CDN (Noto Serif KR, Noto Sans KR)
+
+---
+
+## 파일 구조
+
+```
+portfolio-library/
+└── index.html          # 전체 포트폴리오 (스타일 + 마크업 + 스크립트 인라인)
+```
+
+---
+
+### Task 1: HTML 뼈대 + CSS 변수 + 프로필 헤더
+
+**Files:**
+- Create: `portfolio-library/index.html`
+
+- [ ] **Step 1: index.html 파일 생성 — 뼈대 + CSS 변수 + 헤더 섹션**
+
+`portfolio-library/index.html` 을 아래 내용으로 만든다:
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>빈윤미 — 도서관 프로젝트 포트폴리오</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ── 디자인 토큰 ── */
+    :root {
+      --bg: #FDF6F0;
+      --header-bg: #5C3D2E;
+      --header-text: #F5EDE4;
+      --accent: #C9622F;
+      --accent-hover: #A84E22;
+      --card-bg: #FFFFFF;
+      --card-border: #EDE0D4;
+      --text: #333333;
+      --text-sub: #777777;
+      --tag-bg: #F5EDE4;
+      --tag-text: #7A4F35;
+      --radius-card: 12px;
+      --radius-btn: 8px;
+      --shadow-card: 0 2px 12px rgba(92,61,46,0.08);
+      --font-serif: 'Noto Serif KR', serif;
+      --font-sans: 'Noto Sans KR', sans-serif;
+      --max-width: 960px;
+    }
+
+    /* ── 리셋 ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── 레이아웃 ── */
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* ── 헤더 / 프로필 ── */
+    .profile {
+      background: var(--header-bg);
+      color: var(--header-text);
+      padding: 56px 20px 48px;
+      text-align: center;
+    }
+    .profile-avatar {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      margin: 0 auto 20px;
+    }
+    .profile-name {
+      font-family: var(--font-serif);
+      font-size: 26px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .profile-role {
+      font-size: 14px;
+      opacity: 0.75;
+      letter-spacing: 0.08em;
+      margin-bottom: 14px;
+    }
+    .profile-bio {
+      font-size: 15px;
+      opacity: 0.88;
+      max-width: 400px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* ── 프로젝트 섹션 ── */
+    .projects {
+      padding: 48px 20px 64px;
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+    .section-label {
+      font-family: var(--font-serif);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    @media (max-width: 600px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── 카드 ── */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-card);
+      padding: 24px;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .card-emoji {
+      font-size: 24px;
+      line-height: 1;
+    }
+    .card-title {
+      font-family: var(--font-serif);
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .card-desc {
+      font-size: 13px;
+      color: var(--text-sub);
+      line-height: 1.65;
+    }
+    .card-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .card-features li {
+      font-size: 13px;
+      color: var(--text);
+      padding-left: 14px;
+      position: relative;
+    }
+    .card-features li::before {
+      content: '·';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .tag {
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      font-size: 11px;
+      font-weight: 500;
+      padding: 3px 9px;
+      border-radius: 20px;
+    }
+    .card-footer {
+      margin-top: auto;
+      padding-top: 4px;
+    }
+    .btn-link {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 8px 18px;
+      border-radius: var(--radius-btn);
+      transition: background 0.15s;
+    }
+    .btn-link:hover { background: var(--accent-hover); }
+    .btn-local {
+      display: inline-block;
+      background: var(--tag-bg);
+      color: var(--text-sub);
+      font-size: 13px;
+      font-weight: 500;
+      padding: 8px 18px;
+      border-radius: var(--radius-btn);
+      cursor: default;
+    }
+
+    /* ── 푸터 ── */
+    footer {
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-sub);
+      border-top: 1px solid var(--card-border);
+      padding: 24px 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 프로필 헤더 -->
+  <header class="profile">
+    <div class="profile-avatar">📚</div>
+    <h1 class="profile-name">빈윤미</h1>
+    <p class="profile-role">사서</p>
+    <p class="profile-bio">바이브코딩으로 다양한 자동화를 시도 중인 평범한 일반인</p>
+  </header>
+
+  <!-- 프로젝트 목록 -->
+  <main class="projects">
+    <p class="section-label">Projects</p>
+    <div class="grid">
+      <!-- 카드들은 Task 2에서 추가 -->
+    </div>
+  </main>
+
+  <footer>
+    © 2026 빈윤미 · 도서관 프로젝트 포트폴리오
+  </footer>
+
+</body>
+</html>
+```
+
+- [ ] **Step 2: 브라우저에서 열어서 헤더 확인**
+
+```bash
+open /Users/binzzang/development/portfolio-library/index.html
+```
+
+헤더(갈색 배경, 이름, 직함, 소개)가 보이면 OK.
+
+- [ ] **Step 3: 커밋**
+
+```bash
+cd /Users/binzzang/development/portfolio-library
+git init
+git add index.html
+git commit -m "feat: 포트폴리오 뼈대 + 프로필 헤더"
+```
+
+---
+
+### Task 2: 프로젝트 카드 6개 추가
+
+**Files:**
+- Modify: `portfolio-library/index.html` — `<div class="grid">` 안에 카드 6개 삽입
+
+- [ ] **Step 1: `<div class="grid">` 안의 주석을 아래 카드 6개로 교체**
+
+`<!-- 카드들은 Task 2에서 추가 -->` 를 아래로 교체:
+
+```html
+      <!-- 1. MY LAB -->
+      <article class="card">
+        <div class="card-header">
+          <span class="card-emoji">📱</span>
+          <h2 class="card-title">MY LAB</h2>
+        </div>
+        <p class="card-desc">학생들이 스마트폰으로 도서를 대출·반납하고 독서활동을 관리하는 학교 도서관 앱</p>
+        <ul class="card-features">
+          <li>학생 바코드로 도서 대출·반납 처리</li>
+          <li>도서 검색 및 감상문 작성</li>
+          <li>반납일 푸시 알림</li>
+        </ul>
+        <div class="card-tags">
+          <span class="tag">Flutter</span>
+          <span class="tag">Firebase</span>
+          <span class="tag">Firestore</span>
+          <span class="tag">FCM</span>
+        </div>
+        <div class="card-footer">
+          <span class="btn-local">로컬 운영 중</span>
+        </div>
+      </article>
+
+      <!-- 2. 희망도서 신청 -->
+      <article class="card">
+        <div class="card-header">
+          <span class="card-emoji">📖</span>
+          <h2 class="card-title">희망도서 신청</h2>
+        </div>
+        <p class="card-desc">학생·교직원이 원하는 책을 검색하고 신청하는 희망도서 관리 웹앱</p>
+        <ul class="card-features">
+          <li>알라딘 API로 도서 검색 및 신청</li>
+          <li>신청 내역 조회</li>
+          <li>관리자 엑셀 다운로드</li>
+        </ul>
+        <div class="card-tags">
+          <span class="tag">React</span>
+          <span class="tag">TypeScript</span>
+          <span class="tag">Google Apps Script</span>
+        </div>
+        <div class="card-footer">
+          <a href="https://lib-mid.vercel.app" target="_blank" rel="noopener" class="btn-link">서비스 바로가기 →</a>
+        </div>
+      </article>
+
+      <!-- 3. LibraBook -->
+      <article class="card">
+        <div class="card-header">
+          <span class="card-emoji">📅</span>
+          <h2 class="card-title">LibraBook</h2>
+        </div>
+        <p class="card-desc">선생님·학생이 도서관 수업 시간과 방과후 좌석을 예약하는 시스템</p>
+        <ul class="card-features">
+          <li>교시별 수업 예약 및 충돌 협의</li>
+          <li>학생 방과후 좌석 배치도 예약</li>
+          <li>관리자 월별 타임테이블 설정</li>
+        </ul>
+        <div class="card-tags">
+          <span class="tag">Next.js</span>
+          <span class="tag">TypeScript</span>
+          <span class="tag">Supabase</span>
+          <span class="tag">Tailwind CSS</span>
+        </div>
+        <div class="card-footer">
+          <a href="https://librabook.vercel.app" target="_blank" rel="noopener" class="btn-link">서비스 바로가기 →</a>
+        </div>
+      </article>
+
+      <!-- 4. 해밀도서관 포털 -->
+      <article class="card">
+        <div class="card-header">
+          <span class="card-emoji">🏛️</span>
+          <h2 class="card-title">해밀도서관 포털</h2>
+        </div>
+        <p class="card-desc">해밀도서관의 모든 서비스를 한 곳에서 이용하는 통합 포털</p>
+        <ul class="card-features">
+          <li>도서관 서비스 바로가기 카드</li>
+          <li>QR코드 생성 및 인쇄 페이지</li>
+          <li>개인정보처리방침 안내</li>
+        </ul>
+        <div class="card-tags">
+          <span class="tag">Next.js</span>
+          <span class="tag">TypeScript</span>
+          <span class="tag">Tailwind CSS</span>
+        </div>
+        <div class="card-footer">
+          <a href="HAEMIL_URL" target="_blank" rel="noopener" class="btn-link">서비스 바로가기 →</a>
+        </div>
+      </article>
+
+      <!-- 5. 복본도서 폐기 관리 -->
+      <article class="card">
+        <div class="card-header">
+          <span class="card-emoji">🗂️</span>
+          <h2 class="card-title">복본도서 폐기 관리</h2>
+        </div>
+        <p class="card-desc">10권 이상 보유 복본도서를 교사에게 공유해 수업 활용 계획을 수집하고 폐기 대상을 선별하는 웹앱</p>
+        <ul class="card-features">
+          <li>관리자 엑셀 업로드 → 교사 공유 링크 생성</li>
+          <li>교사 활용 계획 체크 및 제출</li>
+          <li>폐기 대상 목록 엑셀 다운로드</li>
+        </ul>
+        <div class="card-tags">
+          <span class="tag">Next.js</span>
+          <span class="tag">TypeScript</span>
+          <span class="tag">Supabase</span>
+          <span class="tag">Tailwind CSS</span>
+        </div>
+        <div class="card-footer">
+          <a href="BOOKCHECK_URL" target="_blank" rel="noopener" class="btn-link">서비스 바로가기 →</a>
+        </div>
+      </article>
+
+      <!-- 6. 책정리 도우미 -->
+      <article class="card">
+        <div class="card-header">
+          <span class="card-emoji">🔍</span>
+          <h2 class="card-title">책정리 도우미</h2>
+        </div>
+        <p class="card-desc">도서부 학생이 바코드를 스캔하면 해당 책의 서가 위치(앞뒤 3권)를 시각화해주는 모바일 웹앱</p>
+        <ul class="card-features">
+          <li>바코드 스캔으로 서가 위치 즉시 확인</li>
+          <li>KDC 청구기호 기준 앞뒤 3권 선반 시각화</li>
+          <li>구글 시트 실시간 연동 (30분 캐시)</li>
+        </ul>
+        <div class="card-tags">
+          <span class="tag">React</span>
+          <span class="tag">TypeScript</span>
+          <span class="tag">Vite</span>
+          <span class="tag">Google Sheets</span>
+        </div>
+        <div class="card-footer">
+          <a href="BOOKSORT_URL" target="_blank" rel="noopener" class="btn-link">서비스 바로가기 →</a>
+        </div>
+      </article>
+```
+
+- [ ] **Step 2: 브라우저에서 카드 6개 확인**
+
+```bash
+open /Users/binzzang/development/portfolio-library/index.html
+```
+
+카드 6개가 2열 그리드로 표시되는지, 모바일 너비(600px 이하)에서 1열로 바뀌는지 확인.
+
+- [ ] **Step 3: 커밋**
+
+```bash
+cd /Users/binzzang/development/portfolio-library
+git add index.html
+git commit -m "feat: 프로젝트 카드 6개 추가"
+```
+
+---
+
+### Task 3: 배포 URL 확인 및 교체
+
+**Files:**
+- Modify: `portfolio-library/index.html` — `HAEMIL_URL`, `BOOKCHECK_URL`, `BOOKSORT_URL` 플레이스홀더 교체
+
+- [ ] **Step 1: 각 프로젝트의 실제 배포 URL 확인**
+
+아래 명령으로 package.json의 name과 vercel 관련 설정 확인:
+
+```bash
+# haemil-library
+grep -r "vercel.app" /Users/binzzang/development/haemil-library/src/ 2>/dev/null | head -5
+
+# book-check
+grep -r "vercel.app\|NEXT_PUBLIC_APP_URL" /Users/binzzang/development/book-check/ --include="*.env*" --include="*.ts" 2>/dev/null | grep -v node_modules | head -5
+
+# booksort
+grep -r "vercel.app\|homepage" /Users/binzzang/development/booksort/package.json 2>/dev/null
+```
+
+또는 Vercel 대시보드에서 각 프로젝트의 Production URL을 직접 확인.
+
+- [ ] **Step 2: index.html에서 플레이스홀더 교체**
+
+`index.html`에서:
+- `HAEMIL_URL` → 해밀도서관 포털 실제 URL
+- `BOOKCHECK_URL` → 복본도서 폐기 관리 실제 URL
+- `BOOKSORT_URL` → 책정리 도우미 실제 URL
+
+URL을 모르는 경우 해당 카드의 버튼을 `<span class="btn-local">배포 URL 확인 중</span>` 으로 임시 변경.
+
+- [ ] **Step 3: 커밋**
+
+```bash
+cd /Users/binzzang/development/portfolio-library
+git add index.html
+git commit -m "feat: 배포 URL 반영"
+```
+
+---
+
+### Task 4: 마무리 점검
+
+**Files:**
+- Modify: `portfolio-library/index.html` — 최종 확인 후 필요시 미세 조정
+
+- [ ] **Step 1: 브라우저에서 최종 확인**
+
+```bash
+open /Users/binzzang/development/portfolio-library/index.html
+```
+
+체크리스트:
+- [ ] 프로필 헤더 — 이름, 직함, 소개 문구 정상 표시
+- [ ] 카드 6개 — 2열 그리드, 각 카드에 이모지/제목/설명/기능/태그/버튼 모두 표시
+- [ ] 배포 링크 버튼 클릭 시 새 탭으로 열림
+- [ ] MY LAB 카드는 "로컬 운영 중" 표시
+- [ ] 600px 이하 너비에서 1열로 변경 (브라우저 개발자 도구 → 모바일 뷰)
+- [ ] 폰트(Noto Serif KR, Noto Sans KR) 로드 정상
+
+- [ ] **Step 2: 최종 커밋**
+
+```bash
+cd /Users/binzzang/development/portfolio-library
+git add index.html
+git commit -m "feat: 포트폴리오 페이지 완성"
+```

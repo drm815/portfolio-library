@@ -6,26 +6,26 @@
   <title>빈윤미 — 도서관 프로젝트 포트폴리오</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet" />
   <style>
     /* ── 디자인 토큰 ── */
     :root {
-      --bg: #FDF6F8;
-      --header-bg: #E8899A;
-      --header-text: #FFFFFF;
-      --accent: #E8899A;
-      --accent-hover: #D4748A;
+      --bg: #FFF5F7;
+      --header-bg: #F9C4D2;
+      --header-text: #5C2D3A;
+      --accent: #F2708A;
+      --accent-hover: #E05570;
       --card-bg: #FFFFFF;
-      --card-border: #F5D5DC;
-      --text: #333333;
-      --text-sub: #888888;
-      --tag-bg: #FDE8ED;
-      --tag-text: #C0566A;
+      --card-border: #FFE0E8;
+      --text: #3A2028;
+      --text-sub: #9A7880;
+      --tag-bg: #FFF0F3;
+      --tag-text: #D4506A;
       --radius-card: 12px;
       --radius-btn: 8px;
-      --shadow-card: 0 2px 12px rgba(232,137,154,0.12);
-      --font-serif: 'Noto Serif KR', serif;
-      --font-sans: 'Noto Sans KR', sans-serif;
+      --shadow-card: 0 2px 16px rgba(242,112,138,0.10);
+      --font-serif: 'Roboto', 'Noto Sans KR', sans-serif;
+      --font-sans: 'Roboto', 'Noto Sans KR', sans-serif;
       --max-width: 960px;
     }
 
@@ -48,40 +48,81 @@
 
     /* ── 헤더 / 프로필 ── */
     .profile {
-      background: var(--header-bg);
-      color: var(--header-text);
-      padding: 56px 20px 48px;
+      background: linear-gradient(135deg, #F2708A 0%, #F9C4D2 60%, #FFE0E8 100%);
+      color: #3A1020;
+      padding: 72px 20px 100px;
       text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .profile::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 220px; height: 220px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.18);
+    }
+    .profile::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: -40px;
+      width: 260px; height: 260px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.10);
     }
     .profile-avatar {
-      width: 72px;
-      height: 72px;
+      width: 80px;
+      height: 80px;
       border-radius: 50%;
-      background: rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.45);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 32px;
-      margin: 0 auto 20px;
+      font-size: 36px;
+      margin: 0 auto 22px;
+      box-shadow: 0 4px 20px rgba(242,112,138,0.25);
+      position: relative;
+      z-index: 1;
     }
     .profile-name {
       font-family: var(--font-serif);
-      font-size: 26px;
+      font-size: 38px;
       font-weight: 700;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+      position: relative;
+      z-index: 1;
     }
     .profile-role {
-      font-size: 14px;
-      opacity: 0.75;
-      letter-spacing: 0.08em;
-      margin-bottom: 14px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      opacity: 0.65;
+      margin-bottom: 18px;
+      position: relative;
+      z-index: 1;
     }
     .profile-bio {
       font-size: 15px;
-      opacity: 0.88;
-      max-width: 400px;
+      max-width: 600px;
       margin: 0 auto;
-      line-height: 1.7;
+      line-height: 1.8;
+      opacity: 0.82;
+      position: relative;
+      z-index: 1;
+      white-space: nowrap;
+    }
+
+    /* ── 서가 파노라마 ── */
+    .profile-shelf {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      opacity: 0.9;
+      line-height: 0;
     }
 
     /* ── 프로젝트 섹션 ── */
@@ -235,10 +276,181 @@
 
   <!-- 프로필 헤더 -->
   <header class="profile">
-    <div class="profile-avatar">📚</div>
     <h1 class="profile-name">빈윤미</h1>
     <p class="profile-role">사서</p>
-    <p class="profile-bio">바이브코딩으로 다양한 자동화를 시도 중인 평범한 일반인</p>
+    <p class="profile-bio">도서관 자동화를 향해 한 걸음 나아가는 미래의 작은 도서관 관장</p>
+    <!-- 서가 파노라마 -->
+    <div class="profile-shelf">
+      <svg width="100%" height="90" viewBox="0 0 960 90" preserveAspectRatio="xMidYMid meet" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- 바닥선 -->
+        <rect x="0" y="85" width="960" height="3" rx="1.5" fill="rgba(255,255,255,0.3)"/>
+        <!-- 선반 (중간) -->
+        <rect x="0" y="48" width="960" height="2.5" rx="1" fill="rgba(255,255,255,0.25)"/>
+
+        <!-- 서가 기둥 반복 (120px 간격) -->
+        <rect x="0"   y="0" width="3" height="88" rx="1.5" fill="rgba(255,255,255,0.35)"/>
+        <rect x="120" y="0" width="3" height="88" rx="1.5" fill="rgba(255,255,255,0.35)"/>
+        <rect x="240" y="0" width="3" height="88" rx="1.5" fill="rgba(255,255,255,0.35)"/>
+        <rect x="360" y="0" width="3" height="88" rx="1.5" fill="rgba(255,255,255,0.35)"/>
+        <rect x="480" y="0" width="3" height="88" rx="1.5" fill="rgba(255,255,255,0.35)"/>
+        <rect x="600" y="0" width="3" height="88" rx="1.5" fill="rgba(255,255,255,0.35)"/>
+        <rect x="720" y="0" width="3" height="88" rx="1.5" fill="rgba(255,255,255,0.35)"/>
+        <rect x="840" y="0" width="3" height="88" rx="1.5" fill="rgba(255,255,255,0.35)"/>
+        <rect x="957" y="0" width="3" height="88" rx="1.5" fill="rgba(255,255,255,0.35)"/>
+
+        <!-- ── 칸 1 (0~120) 위 ── -->
+        <rect x="6"  y="4"  width="14" height="44" rx="2" fill="rgba(255,255,255,0.55)"/>
+        <rect x="22" y="8"  width="10" height="40" rx="2" fill="rgba(255,255,255,0.35)"/>
+        <rect x="34" y="3"  width="16" height="45" rx="2" fill="rgba(255,255,255,0.45)"/>
+        <rect x="52" y="7"  width="11" height="41" rx="2" fill="rgba(255,255,255,0.30)"/>
+        <rect x="65" y="4"  width="13" height="44" rx="2" fill="rgba(255,255,255,0.50)"/>
+        <rect x="80" y="6"  width="10" height="42" rx="2" fill="rgba(255,255,255,0.40)"/>
+        <rect x="92" y="3"  width="14" height="45" rx="2" fill="rgba(255,255,255,0.55)"/>
+        <rect x="108" y="7" width="10" height="41" rx="2" fill="rgba(255,255,255,0.30)"/>
+        <!-- ── 칸 1 아래 ── -->
+        <rect x="6"  y="51" width="12" height="34" rx="2" fill="rgba(255,255,255,0.40)"/>
+        <rect x="20" y="53" width="16" height="32" rx="2" fill="rgba(255,255,255,0.55)"/>
+        <rect x="38" y="50" width="10" height="35" rx="2" fill="rgba(255,255,255,0.30)"/>
+        <rect x="50" y="52" width="14" height="33" rx="2" fill="rgba(255,255,255,0.45)"/>
+        <rect x="66" y="51" width="11" height="34" rx="2" fill="rgba(255,255,255,0.35)"/>
+        <rect x="79" y="53" width="15" height="32" rx="2" fill="rgba(255,255,255,0.50)"/>
+        <rect x="96" y="50" width="10" height="35" rx="2" fill="rgba(255,255,255,0.40)"/>
+        <rect x="108" y="52" width="10" height="33" rx="2" fill="rgba(255,255,255,0.30)"/>
+
+        <!-- ── 칸 2 (120~240) 위 ── -->
+        <rect x="125" y="6"  width="13" height="42" rx="2" fill="rgba(255,255,255,0.45)"/>
+        <rect x="140" y="4"  width="16" height="44" rx="2" fill="rgba(255,255,255,0.55)"/>
+        <rect x="158" y="7"  width="10" height="41" rx="2" fill="rgba(255,255,255,0.30)"/>
+        <rect x="170" y="3"  width="14" height="45" rx="2" fill="rgba(255,255,255,0.50)"/>
+        <rect x="186" y="6"  width="11" height="42" rx="2" fill="rgba(255,255,255,0.35)"/>
+        <rect x="199" y="4"  width="15" height="44" rx="2" fill="rgba(255,255,255,0.45)"/>
+        <rect x="216" y="7"  width="10" height="41" rx="2" fill="rgba(255,255,255,0.55)"/>
+        <rect x="228" y="5"  width="10" height="43" rx="2" fill="rgba(255,255,255,0.40)"/>
+        <!-- ── 칸 2 아래 ── -->
+        <rect x="125" y="51" width="14" height="34" rx="2" fill="rgba(255,255,255,0.55)"/>
+        <rect x="141" y="53" width="10" height="32" rx="2" fill="rgba(255,255,255,0.35)"/>
+        <rect x="153" y="50" width="16" height="35" rx="2" fill="rgba(255,255,255,0.45)"/>
+        <rect x="171" y="52" width="11" height="33" rx="2" fill="rgba(255,255,255,0.30)"/>
+        <rect x="184" y="51" width="14" height="34" rx="2" fill="rgba(255,255,255,0.50)"/>
+        <rect x="200" y="53" width="10" height="32" rx="2" fill="rgba(255,255,255,0.40)"/>
+        <rect x="212" y="50" width="15" height="35" rx="2" fill="rgba(255,255,255,0.55)"/>
+        <rect x="229" y="52" width="9"  height="33" rx="2" fill="rgba(255,255,255,0.30)"/>
+
+        <!-- ── 칸 3 (240~360) 위 ── -->
+        <rect x="245" y="5"  width="15" height="43" rx="2" fill="rgba(255,255,255,0.50)"/>
+        <rect x="262" y="3"  width="11" height="45" rx="2" fill="rgba(255,255,255,0.40)"/>
+        <rect x="275" y="7"  width="14" height="41" rx="2" fill="rgba(255,255,255,0.55)"/>
+        <rect x="291" y="4"  width="10" height="44" rx="2" fill="rgba(255,255,255,0.30)"/>
+        <rect x="303" y="6"  width="16" height="42" rx="2" fill="rgba(255,255,255,0.45)"/>
+        <rect x="321" y="4"  width="11" height="44" rx="2" fill="rgba(255,255,255,0.35)"/>
+        <rect x="334" y="7"  width="13" height="41" rx="2" fill="rgba(255,255,255,0.50)"/>
+        <rect x="349" y="5"  width="10" height="43" rx="2" fill="rgba(255,255,255,0.55)"/>
+        <!-- ── 칸 3 아래 ── -->
+        <rect x="245" y="52" width="13" height="33" rx="2" fill="rgba(255,255,255,0.35)"/>
+        <rect x="260" y="50" width="16" height="35" rx="2" fill="rgba(255,255,255,0.50)"/>
+        <rect x="278" y="53" width="10" height="32" rx="2" fill="rgba(255,255,255,0.40)"/>
+        <rect x="290" y="51" width="14" height="34" rx="2" fill="rgba(255,255,255,0.55)"/>
+        <rect x="306" y="52" width="11" height="33" rx="2" fill="rgba(255,255,255,0.30)"/>
+        <rect x="319" y="50" width="15" height="35" rx="2" fill="rgba(255,255,255,0.45)"/>
+        <rect x="336" y="53" width="10" height="32" rx="2" fill="rgba(255,255,255,0.55)"/>
+        <rect x="348" y="51" width="10" height="34" rx="2" fill="rgba(255,255,255,0.35)"/>
+
+        <!-- ── 칸 4 (360~480) 위 ── -->
+        <rect x="365" y="4"  width="14" height="44" rx="2" fill="rgba(255,255,255,0.45)"/>
+        <rect x="381" y="7"  width="10" height="41" rx="2" fill="rgba(255,255,255,0.55)"/>
+        <rect x="393" y="3"  width="16" height="45" rx="2" fill="rgba(255,255,255,0.30)"/>
+        <rect x="411" y="6"  width="11" height="42" rx="2" fill="rgba(255,255,255,0.50)"/>
+        <rect x="424" y="4"  width="14" height="44" rx="2" fill="rgba(255,255,255,0.40)"/>
+        <rect x="440" y="7"  width="10" height="41" rx="2" fill="rgba(255,255,255,0.35)"/>
+        <rect x="452" y="5"  width="15" height="43" rx="2" fill="rgba(255,255,255,0.55)"/>
+        <rect x="469" y="3"  width="10" height="45" rx="2" fill="rgba(255,255,255,0.45)"/>
+        <!-- ── 칸 4 아래 ── -->
+        <rect x="365" y="51" width="15" height="34" rx="2" fill="rgba(255,255,255,0.40)"/>
+        <rect x="382" y="53" width="11" height="32" rx="2" fill="rgba(255,255,255,0.55)"/>
+        <rect x="395" y="50" width="14" height="35" rx="2" fill="rgba(255,255,255,0.30)"/>
+        <rect x="411" y="52" width="10" height="33" rx="2" fill="rgba(255,255,255,0.45)"/>
+        <rect x="423" y="51" width="16" height="34" rx="2" fill="rgba(255,255,255,0.50)"/>
+        <rect x="441" y="53" width="10" height="32" rx="2" fill="rgba(255,255,255,0.35)"/>
+        <rect x="453" y="50" width="13" height="35" rx="2" fill="rgba(255,255,255,0.55)"/>
+        <rect x="468" y="52" width="10" height="33" rx="2" fill="rgba(255,255,255,0.40)"/>
+
+        <!-- ── 칸 5 (480~600) 위 ── -->
+        <rect x="485" y="6"  width="12" height="42" rx="2" fill="rgba(255,255,255,0.55)"/>
+        <rect x="499" y="4"  width="15" height="44" rx="2" fill="rgba(255,255,255,0.35)"/>
+        <rect x="516" y="7"  width="10" height="41" rx="2" fill="rgba(255,255,255,0.50)"/>
+        <rect x="528" y="3"  width="14" height="45" rx="2" fill="rgba(255,255,255,0.40)"/>
+        <rect x="544" y="6"  width="11" height="42" rx="2" fill="rgba(255,255,255,0.55)"/>
+        <rect x="557" y="4"  width="16" height="44" rx="2" fill="rgba(255,255,255,0.30)"/>
+        <rect x="575" y="7"  width="10" height="41" rx="2" fill="rgba(255,255,255,0.45)"/>
+        <rect x="587" y="5"  width="12" height="43" rx="2" fill="rgba(255,255,255,0.50)"/>
+        <!-- ── 칸 5 아래 ── -->
+        <rect x="485" y="51" width="13" height="34" rx="2" fill="rgba(255,255,255,0.30)"/>
+        <rect x="500" y="53" width="16" height="32" rx="2" fill="rgba(255,255,255,0.50)"/>
+        <rect x="518" y="50" width="10" height="35" rx="2" fill="rgba(255,255,255,0.55)"/>
+        <rect x="530" y="52" width="14" height="33" rx="2" fill="rgba(255,255,255,0.35)"/>
+        <rect x="546" y="51" width="10" height="34" rx="2" fill="rgba(255,255,255,0.45)"/>
+        <rect x="558" y="53" width="15" height="32" rx="2" fill="rgba(255,255,255,0.40)"/>
+        <rect x="575" y="50" width="11" height="35" rx="2" fill="rgba(255,255,255,0.55)"/>
+        <rect x="588" y="52" width="10" height="33" rx="2" fill="rgba(255,255,255,0.30)"/>
+
+        <!-- ── 칸 6 (600~720) 위 ── -->
+        <rect x="605" y="4"  width="14" height="44" rx="2" fill="rgba(255,255,255,0.40)"/>
+        <rect x="621" y="7"  width="10" height="41" rx="2" fill="rgba(255,255,255,0.55)"/>
+        <rect x="633" y="3"  width="16" height="45" rx="2" fill="rgba(255,255,255,0.35)"/>
+        <rect x="651" y="6"  width="11" height="42" rx="2" fill="rgba(255,255,255,0.50)"/>
+        <rect x="664" y="4"  width="13" height="44" rx="2" fill="rgba(255,255,255,0.30)"/>
+        <rect x="679" y="7"  width="15" height="41" rx="2" fill="rgba(255,255,255,0.45)"/>
+        <rect x="696" y="5"  width="10" height="43" rx="2" fill="rgba(255,255,255,0.55)"/>
+        <rect x="708" y="3"  width="10" height="45" rx="2" fill="rgba(255,255,255,0.40)"/>
+        <!-- ── 칸 6 아래 ── -->
+        <rect x="605" y="52" width="15" height="33" rx="2" fill="rgba(255,255,255,0.55)"/>
+        <rect x="622" y="50" width="10" height="35" rx="2" fill="rgba(255,255,255,0.35)"/>
+        <rect x="634" y="53" width="14" height="32" rx="2" fill="rgba(255,255,255,0.45)"/>
+        <rect x="650" y="51" width="11" height="34" rx="2" fill="rgba(255,255,255,0.30)"/>
+        <rect x="663" y="52" width="16" height="33" rx="2" fill="rgba(255,255,255,0.50)"/>
+        <rect x="681" y="50" width="10" height="35" rx="2" fill="rgba(255,255,255,0.40)"/>
+        <rect x="693" y="53" width="14" height="32" rx="2" fill="rgba(255,255,255,0.55)"/>
+        <rect x="709" y="51" width="9"  height="34" rx="2" fill="rgba(255,255,255,0.30)"/>
+
+        <!-- ── 칸 7 (720~840) 위 ── -->
+        <rect x="725" y="5"  width="13" height="43" rx="2" fill="rgba(255,255,255,0.50)"/>
+        <rect x="740" y="3"  width="16" height="45" rx="2" fill="rgba(255,255,255,0.40)"/>
+        <rect x="758" y="7"  width="10" height="41" rx="2" fill="rgba(255,255,255,0.55)"/>
+        <rect x="770" y="4"  width="14" height="44" rx="2" fill="rgba(255,255,255,0.30)"/>
+        <rect x="786" y="6"  width="11" height="42" rx="2" fill="rgba(255,255,255,0.45)"/>
+        <rect x="799" y="4"  width="15" height="44" rx="2" fill="rgba(255,255,255,0.35)"/>
+        <rect x="816" y="7"  width="10" height="41" rx="2" fill="rgba(255,255,255,0.55)"/>
+        <rect x="828" y="5"  width="10" height="43" rx="2" fill="rgba(255,255,255,0.45)"/>
+        <!-- ── 칸 7 아래 ── -->
+        <rect x="725" y="51" width="14" height="34" rx="2" fill="rgba(255,255,255,0.35)"/>
+        <rect x="741" y="53" width="10" height="32" rx="2" fill="rgba(255,255,255,0.55)"/>
+        <rect x="753" y="50" width="15" height="35" rx="2" fill="rgba(255,255,255,0.40)"/>
+        <rect x="770" y="52" width="11" height="33" rx="2" fill="rgba(255,255,255,0.50)"/>
+        <rect x="783" y="51" width="14" height="34" rx="2" fill="rgba(255,255,255,0.30)"/>
+        <rect x="799" y="53" width="10" height="32" rx="2" fill="rgba(255,255,255,0.45)"/>
+        <rect x="811" y="50" width="16" height="35" rx="2" fill="rgba(255,255,255,0.55)"/>
+        <rect x="829" y="52" width="9"  height="33" rx="2" fill="rgba(255,255,255,0.35)"/>
+
+        <!-- ── 칸 8 (840~960) 위 ── -->
+        <rect x="845" y="4"  width="14" height="44" rx="2" fill="rgba(255,255,255,0.45)"/>
+        <rect x="861" y="7"  width="10" height="41" rx="2" fill="rgba(255,255,255,0.30)"/>
+        <rect x="873" y="3"  width="16" height="45" rx="2" fill="rgba(255,255,255,0.55)"/>
+        <rect x="891" y="6"  width="11" height="42" rx="2" fill="rgba(255,255,255,0.40)"/>
+        <rect x="904" y="4"  width="13" height="44" rx="2" fill="rgba(255,255,255,0.50)"/>
+        <rect x="919" y="7"  width="15" height="41" rx="2" fill="rgba(255,255,255,0.35)"/>
+        <rect x="936" y="5"  width="10" height="43" rx="2" fill="rgba(255,255,255,0.55)"/>
+        <rect x="948" y="3"  width="9"  height="45" rx="2" fill="rgba(255,255,255,0.40)"/>
+        <!-- ── 칸 8 아래 ── -->
+        <rect x="845" y="52" width="13" height="33" rx="2" fill="rgba(255,255,255,0.50)"/>
+        <rect x="860" y="50" width="16" height="35" rx="2" fill="rgba(255,255,255,0.35)"/>
+        <rect x="878" y="53" width="10" height="32" rx="2" fill="rgba(255,255,255,0.55)"/>
+        <rect x="890" y="51" width="14" height="34" rx="2" fill="rgba(255,255,255,0.30)"/>
+        <rect x="906" y="52" width="11" height="33" rx="2" fill="rgba(255,255,255,0.45)"/>
+        <rect x="919" y="50" width="15" height="35" rx="2" fill="rgba(255,255,255,0.40)"/>
+        <rect x="936" y="53" width="10" height="32" rx="2" fill="rgba(255,255,255,0.55)"/>
+        <rect x="948" y="51" width="9"  height="34" rx="2" fill="rgba(255,255,255,0.30)"/>
+      </svg>
+    </div>
   </header>
 
   <!-- 프로젝트 목록 -->
