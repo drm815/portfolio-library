@@ -221,7 +221,141 @@
   <main class="projects">
     <p class="section-label">Projects</p>
     <div class="grid">
-      <!-- 카드들은 Task 2에서 추가 -->
+      <!-- 1. MY LAB -->
+      <article class="card">
+        <div class="card-header">
+          <span class="card-emoji">📱</span>
+          <h2 class="card-title">MY LAB</h2>
+        </div>
+        <p class="card-desc">학생들이 스마트폰으로 도서를 대출·반납하고 독서활동을 관리하는 학교 도서관 앱</p>
+        <ul class="card-features">
+          <li>학생 바코드로 도서 대출·반납 처리</li>
+          <li>도서 검색 및 감상문 작성</li>
+          <li>반납일 푸시 알림</li>
+        </ul>
+        <div class="card-tags">
+          <span class="tag">Flutter</span>
+          <span class="tag">Firebase</span>
+          <span class="tag">Firestore</span>
+          <span class="tag">FCM</span>
+        </div>
+        <div class="card-footer">
+          <span class="btn-local">로컬 운영 중</span>
+        </div>
+      </article>
+
+      <!-- 2. 희망도서 신청 -->
+      <article class="card">
+        <div class="card-header">
+          <span class="card-emoji">📖</span>
+          <h2 class="card-title">희망도서 신청</h2>
+        </div>
+        <p class="card-desc">학생·교직원이 원하는 책을 검색하고 신청하는 희망도서 관리 웹앱</p>
+        <ul class="card-features">
+          <li>알라딘 API로 도서 검색 및 신청</li>
+          <li>신청 내역 조회</li>
+          <li>관리자 엑셀 다운로드</li>
+        </ul>
+        <div class="card-tags">
+          <span class="tag">React</span>
+          <span class="tag">TypeScript</span>
+          <span class="tag">Google Apps Script</span>
+        </div>
+        <div class="card-footer">
+          <a href="https://lib-mid.vercel.app" target="_blank" rel="noopener" class="btn-link">서비스 바로가기 →</a>
+        </div>
+      </article>
+
+      <!-- 3. LibraBook -->
+      <article class="card">
+        <div class="card-header">
+          <span class="card-emoji">📅</span>
+          <h2 class="card-title">LibraBook</h2>
+        </div>
+        <p class="card-desc">선생님·학생이 도서관 수업 시간과 방과후 좌석을 예약하는 시스템</p>
+        <ul class="card-features">
+          <li>교시별 수업 예약 및 충돌 협의</li>
+          <li>학생 방과후 좌석 배치도 예약</li>
+          <li>관리자 월별 타임테이블 설정</li>
+        </ul>
+        <div class="card-tags">
+          <span class="tag">Next.js</span>
+          <span class="tag">TypeScript</span>
+          <span class="tag">Supabase</span>
+          <span class="tag">Tailwind CSS</span>
+        </div>
+        <div class="card-footer">
+          <a href="https://librabook.vercel.app" target="_blank" rel="noopener" class="btn-link">서비스 바로가기 →</a>
+        </div>
+      </article>
+
+      <!-- 4. 해밀도서관 포털 -->
+      <article class="card">
+        <div class="card-header">
+          <span class="card-emoji">🏛️</span>
+          <h2 class="card-title">해밀도서관 포털</h2>
+        </div>
+        <p class="card-desc">해밀도서관의 모든 서비스를 한 곳에서 이용하는 통합 포털</p>
+        <ul class="card-features">
+          <li>도서관 서비스 바로가기 카드</li>
+          <li>QR코드 생성 및 인쇄 페이지</li>
+          <li>개인정보처리방침 안내</li>
+        </ul>
+        <div class="card-tags">
+          <span class="tag">Next.js</span>
+          <span class="tag">TypeScript</span>
+          <span class="tag">Tailwind CSS</span>
+        </div>
+        <div class="card-footer">
+          <a href="HAEMIL_URL" target="_blank" rel="noopener" class="btn-link">서비스 바로가기 →</a>
+        </div>
+      </article>
+
+      <!-- 5. 복본도서 폐기 관리 -->
+      <article class="card">
+        <div class="card-header">
+          <span class="card-emoji">🗂️</span>
+          <h2 class="card-title">복본도서 폐기 관리</h2>
+        </div>
+        <p class="card-desc">10권 이상 보유 복본도서를 교사에게 공유해 수업 활용 계획을 수집하고 폐기 대상을 선별하는 웹앱</p>
+        <ul class="card-features">
+          <li>관리자 엑셀 업로드 → 교사 공유 링크 생성</li>
+          <li>교사 활용 계획 체크 및 제출</li>
+          <li>폐기 대상 목록 엑셀 다운로드</li>
+        </ul>
+        <div class="card-tags">
+          <span class="tag">Next.js</span>
+          <span class="tag">TypeScript</span>
+          <span class="tag">Supabase</span>
+          <span class="tag">Tailwind CSS</span>
+        </div>
+        <div class="card-footer">
+          <a href="BOOKCHECK_URL" target="_blank" rel="noopener" class="btn-link">서비스 바로가기 →</a>
+        </div>
+      </article>
+
+      <!-- 6. 책정리 도우미 -->
+      <article class="card">
+        <div class="card-header">
+          <span class="card-emoji">🔍</span>
+          <h2 class="card-title">책정리 도우미</h2>
+        </div>
+        <p class="card-desc">도서부 학생이 바코드를 스캔하면 해당 책의 서가 위치(앞뒤 3권)를 시각화해주는 모바일 웹앱</p>
+        <ul class="card-features">
+          <li>바코드 스캔으로 서가 위치 즉시 확인</li>
+          <li>KDC 청구기호 기준 앞뒤 3권 선반 시각화</li>
+          <li>구글 시트 실시간 연동 (30분 캐시)</li>
+        </ul>
+        <div class="card-tags">
+          <span class="tag">React</span>
+          <span class="tag">TypeScript</span>
+          <span class="tag">Vite</span>
+          <span class="tag">Google Sheets</span>
+        </div>
+        <div class="card-footer">
+          <a href="BOOKSORT_URL" target="_blank" rel="noopener" class="btn-link">서비스 바로가기 →</a>
+        </div>
+      </article>
     </div>
   </main>
 
