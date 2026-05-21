@@ -613,20 +613,42 @@
 
       <!-- 7. 도서관 자동화 시스템 -->
       <article class="card">
-        <div class="card-screenshot" style="display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#f0f4ff 0%,#e8f0fe 100%);min-height:180px;">
-          <span style="font-size:64px;">⚙️</span>
-        </div>
         <div class="card-header">
           <span class="card-emoji">🤖</span>
           <h2 class="card-title">도서관 자동화 시스템</h2>
         </div>
-        <p class="card-desc">독서로에서 전체 소장 도서 목록을 자동으로 다운로드해 Google Drive/Sheets에 업로드하고, Windows 작업 스케줄러로 1시간마다 백그라운드 실행되는 자동화 스크립트</p>
-        <ul class="card-features">
-          <li>Selenium으로 독서로 자동 로그인 → 전체 반출(xlsx)</li>
-          <li>Google Drive 업로드 + Sheets 실시간 덮어쓰기</li>
-          <li>Windows 작업 스케줄러 + VBScript로 1시간마다 무창 실행</li>
-          <li>setup.bat 한 번 실행으로 의존성 설치 및 스케줄 등록</li>
-        </ul>
+        <p class="card-desc">독서로에서 전체 소장 도서 목록을 자동으로 다운로드해 Google Drive/Sheets에 업로드하고, Windows 작업 스케줄러로 1시간마다 백그라운드 실행</p>
+
+        <!-- 작동 원리 플로우 -->
+        <div style="margin:16px 0;padding:16px;background:#FFF0F3;border-radius:10px;border:1px solid #FFD6E0;">
+          <div style="font-size:11px;font-weight:700;color:#D4506A;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:12px;">작동 원리</div>
+          <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:4px;background:white;border:1px solid #FFD6E0;border-radius:8px;padding:10px 12px;min-width:72px;text-align:center;">
+              <span style="font-size:20px;">🕐</span>
+              <span style="font-size:11px;font-weight:600;color:#3A2028;line-height:1.3;">1시간마다<br>자동 실행</span>
+              <span style="font-size:10px;color:#9A7880;">Windows<br>Scheduler</span>
+            </div>
+            <span style="color:#F2708A;font-size:16px;flex-shrink:0;">→</span>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:4px;background:white;border:1px solid #FFD6E0;border-radius:8px;padding:10px 12px;min-width:72px;text-align:center;">
+              <span style="font-size:20px;">🌐</span>
+              <span style="font-size:11px;font-weight:600;color:#3A2028;line-height:1.3;">독서로<br>자동 로그인</span>
+              <span style="font-size:10px;color:#9A7880;">Selenium<br>Headless</span>
+            </div>
+            <span style="color:#F2708A;font-size:16px;flex-shrink:0;">→</span>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:4px;background:white;border:1px solid #FFD6E0;border-radius:8px;padding:10px 12px;min-width:72px;text-align:center;">
+              <span style="font-size:20px;">📥</span>
+              <span style="font-size:11px;font-weight:600;color:#3A2028;line-height:1.3;">전체 도서<br>xlsx 반출</span>
+              <span style="font-size:10px;color:#9A7880;">소장자료<br>전체</span>
+            </div>
+            <span style="color:#F2708A;font-size:16px;flex-shrink:0;">→</span>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:4px;background:white;border:1px solid #FFD6E0;border-radius:8px;padding:10px 12px;min-width:72px;text-align:center;">
+              <span style="font-size:20px;">📊</span>
+              <span style="font-size:11px;font-weight:600;color:#3A2028;line-height:1.3;">Google<br>Sheets 갱신</span>
+              <span style="font-size:10px;color:#9A7880;">Drive API<br>업로드</span>
+            </div>
+          </div>
+        </div>
+
         <div class="card-tags">
           <span class="tag">Python</span>
           <span class="tag">Selenium</span>
