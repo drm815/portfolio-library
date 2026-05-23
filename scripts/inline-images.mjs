@@ -8,7 +8,7 @@ const imagesDir = path.join(__dirname, '..', 'images');
 
 let html = fs.readFileSync(htmlPath, 'utf8');
 
-const images = ['wish', 'librabook', 'haemil', 'bookcheck', 'booksort'];
+const images = ['wish', 'librabook', 'haemil', 'bookcheck', 'booksort', 'bookreview'];
 
 for (const name of images) {
   const imgPath = path.join(imagesDir, `${name}.png`);

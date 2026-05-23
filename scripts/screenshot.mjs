@@ -12,6 +12,7 @@ const sites = [
   { name: 'haemil',   url: 'https://haemil-library.vercel.app' },
   { name: 'bookcheck',url: 'https://book-disposal.vercel.app' },
   { name: 'booksort', url: 'https://booksort-rho.vercel.app' },
+  { name: 'bookreview', url: 'https://book-review-red-eta.vercel.app/login' },
 ];
 
 const browser = await chromium.launch();
