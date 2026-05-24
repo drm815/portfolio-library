@@ -14,7 +14,8 @@ for (const name of images) {
   const imgPath = path.join(imagesDir, `${name}.png`);
   const b64 = fs.readFileSync(imgPath).toString('base64');
   const dataUrl = `data:image/png;base64,${b64}`;
-  html = html.replace(`src="images/${name}.png"`, `src="${dataUrl}"`);
+  const regex = new RegExp(`src="(?:images/${name}\\.png|data:image/png;base64,[^"]*)"`, 'g');
+  html = html.replace(regex, `src="${dataUrl}"`);
   console.log(`✅ ${name}.png 인라인 삽입 완료`);
 }
 
